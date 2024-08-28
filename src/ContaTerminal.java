@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ContaTerminal {
@@ -5,8 +6,15 @@ public class ContaTerminal {
         int numeroConta;
         String agenciaBanco;
         String nomeCliente;
-        float saldo;
+        float saldo = 0F;
 
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Por favor, digite o número da conta.");
+            numeroConta = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.err.println("O campo 'NÚMERO DA CONTA' precisa ser numérico.");
+        }
         Scanner scanner = new Scanner(System.in);
         System.out.println("Por favor, digite o número da conta.");
         numeroConta = scanner.nextInt();
@@ -18,8 +26,12 @@ public class ContaTerminal {
         System.out.println("Agora digite o seu nome.");
         nomeCliente = scanner1.nextLine();
 
-        System.out.println("Digite seu saldo.");
-        saldo = scanner.nextFloat();
+        try {
+            System.out.println("Digite seu saldo.");
+            saldo = scanner.nextFloat();
+        } catch (InputMismatchException e) {
+            System.err.println("O campo 'SALDO' precisa ser numérico.");
+        }
 
         scanner.close();
 
